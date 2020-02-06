@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box= "ubuntu/bionic64"
-  config.vm.box_url= "file://bionic-server-cloudimg-amd64-vagrant.box"
+  # config.vm.box_url= "file://bionic-server-cloudimg-amd64-vagrant.box"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -40,9 +40,9 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
 
   
-  # config.vm.synced_folder "./data-recovery", "/home/vagrant/data-recovery"
-  config.vm.synced_folder "./bin", "/home/vagrant/bin"
-  config.vm.synced_folder "./html", "/var/www/html", :owner=> 'www-data', :group=>'www-data' 
+  # Sync folder
+  config.vm.synced_folder "./vagrant", "/vagrant"
+  
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
@@ -89,4 +89,8 @@ Vagrant.configure(2) do |config|
        '--productid', PRODUCT_ID,
        '--product', PRODUCT]
     end
+   
+   # Start provisioning
+   config.vm.provision 'shell', path: './vagrant/provision/vagrant-run-once.sh'    
+    
 end

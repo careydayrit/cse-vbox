@@ -1,0 +1,4 @@
+Host *.getpantheon.com *.panth.io *.pantheon.io
+        User carey.dayrit
+        ServerAliveInterval 60
+        ServerAliveCountMax 10
