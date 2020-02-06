@@ -1,2 +1,18 @@
-# ubuntu18-pantheon-toolchain
-Vagrant setup to work with pantheon toolchain
+# Vagrant Setup
+
+Vagrant Setup with gpg provision
+
+## Requirements
+
+* Virtualbox
+* Vagrant
+
+
+## Installation
+
+* clone the repo
+* vagrant up
+
+
+
+
