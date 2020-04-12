@@ -5,7 +5,7 @@
 sudo apt-get update      
 
 # install the needed to make the smart card reading
-sudo apt-get install -y gnupg ykneomgr scdaemon pinentry-tty
+sudo apt-get install -y gnupg ykneomgr pcscd scdaemon pinentry-tty
 
 
 # copy the files
