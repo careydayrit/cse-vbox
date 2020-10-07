@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box= "ubuntu/bionic64"
-  # config.vm.box_url= "file://bionic-server-cloudimg-amd64-vagrant.box"
+  config.vm.box= "ubuntu/focal64"
+  #config.vm.box_url= "file://focal-server-cloudimg-amd64-vagrant.box"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -52,7 +52,7 @@ Vagrant.configure(2) do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-      vb.memory = "2048"
+      vb.memory = "512"
   end
   #
   # View the documentation for the provider you are using for more
@@ -91,6 +91,7 @@ Vagrant.configure(2) do |config|
     end
    
    # Start provisioning
-   config.vm.provision 'shell', path: './vagrant/provision/vagrant-run-once.sh'    
+   config.vm.provision 'shell', path: './vagrant/provision/vagrant-run-once.sh' 
+   config.vm.provision 'shell', path: './vagrant/provision/install-terminus-run-once.sh'
     
 end
