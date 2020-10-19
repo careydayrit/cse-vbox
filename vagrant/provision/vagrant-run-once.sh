@@ -5,8 +5,12 @@
 sudo apt-get update      
 
 # install the needed to make the smart card reading
-sudo apt-get install -y gnupg ykneomgr pcscd scdaemon pinentry-tty
+sudo apt-get install -y gnupg pcscd scdaemon pinentry-tty
 
+# install the yubikey manager
+sudo add-apt-repository ppa:yubico/stable && sudo apt-get update
+
+sudo app-get install -y yubkkey-manager
 
 # copy the files
 

@@ -93,5 +93,10 @@ Vagrant.configure(2) do |config|
    # Start provisioning
    config.vm.provision 'shell', path: './vagrant/provision/vagrant-run-once.sh' 
    config.vm.provision 'shell', path: './vagrant/provision/install-terminus-run-once.sh'
+   
+	config.vm.provider :virtualbox do |v|
+		v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+		v.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+	end
     
 end
