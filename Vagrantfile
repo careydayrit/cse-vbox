@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
 
   
   # Sync folder
-  config.vm.synced_folder "./vagrant/provisions", "/home/vagrant/provisions"
+  config.vm.synced_folder "./vagrant/provision", "/home/vagrant/provision"
   config.vm.synced_folder "./sites", "/home/vagrant/sites"
   config.vm.synced_folder "./load-testing", "/home/vagrant/load-testing"
   
