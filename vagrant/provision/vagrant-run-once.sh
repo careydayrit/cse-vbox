@@ -10,16 +10,17 @@ sudo apt-get install -y gnupg pcscd scdaemon pinentry-tty
 # install the yubikey manager
 sudo add-apt-repository ppa:yubico/stable && sudo apt-get update
 
-sudo app-get install -y yubkkey-manager
+sudo apt-get install -y yubikey-manager
 
 # copy the files
 
 cat /vagrant/provision/inclusion.txt >> /home/vagrant/.bashrc
-cp /vagrant/provision/scdaemon.conf /home/vagrant/.gnupg
+source .bashrc
+cp /vagrant/provision/scdaemon.conf /home/vagrant/.gnupg/scdaemon.conf
 chown vagrant:vagrant /home/vagrant/.gnupg/scdaemon.conf
-cp /vagrant/provision/gpg-agent.conf /home/vagrant/.gnupg
+cp /vagrant/provision/gpg-agent.conf /home/vagrant/.gnupg/gpg-agent.conf
 chown vagrant:vagrant /home/vagrant/.gnupg/gpg-agent.conf
-cp /vagrant/provision/config /home/vagrant/.ssh
+cp /vagrant/provision/config /home/vagrant/.ssh/config
 chown vagrant:vagrant /home/vagrant/.ssh/config
 
 

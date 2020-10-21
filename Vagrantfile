@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box= "ubuntu/focal64"
-  #config.vm.box_url= "file://focal-server-cloudimg-amd64-vagrant.box"
+  config.vm.box_url= "file://focal-server-cloudimg-amd64-vagrant.box"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -41,7 +41,9 @@ Vagrant.configure(2) do |config|
 
   
   # Sync folder
-  config.vm.synced_folder "./vagrant", "/vagrant"
+  config.vm.synced_folder "./vagrant/provisions", "/home/vagrant/provisions"
+  config.vm.synced_folder "./sites", "/home/vagrant/sites"
+  config.vm.synced_folder "./load-testing", "/home/vagrant/load-testing"
   
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -53,6 +55,7 @@ Vagrant.configure(2) do |config|
   #
   #   # Customize the amount of memory on the VM:
       vb.memory = "512"
+      vb.cpus ="1"
   end
   #
   # View the documentation for the provider you are using for more
@@ -73,30 +76,30 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   
-    FILTER_NAME="Yubico Yubikey 4 OTP+U2F+CCID [0437]"
-    MANUFACTURER="Yubico"
-    VENDOR_ID="0x1050"
-    PRODUCT_ID="0x0407"
-    PRODUCT="Yubikey 4 OTP+U2F+CCID"
+  FILTER_NAME="Yubico Yubikey 4 OTP+U2F+CCID [0437]"
+  MANUFACTURER="Yubico"
+  VENDOR_ID="0x1050"
+  PRODUCT_ID="0x0407"
+  PRODUCT="Yubikey 4 OTP+U2F+CCID"
 
-    config.vm.provider "virtualbox" do |vb|
-     vb.customize ['modifyvm', :id, '--usb', 'on']
-     vb.customize ['usbfilter', 'add', '0',
-       '--target', :id,
-       '--name', FILTER_NAME,
-       '--manufacturer', MANUFACTURER,
-       '--vendorid', VENDOR_ID,
-       '--productid', PRODUCT_ID,
-       '--product', PRODUCT]
-    end
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ['modifyvm', :id, '--usb', 'on']
+    vb.customize ['usbfilter', 'add', '0',
+    '--target', :id,
+    '--name', FILTER_NAME,
+    '--manufacturer', MANUFACTURER,
+    '--vendorid', VENDOR_ID,
+    '--productid', PRODUCT_ID,
+    '--product', PRODUCT]
+  end
    
    # Start provisioning
    config.vm.provision 'shell', path: './vagrant/provision/vagrant-run-once.sh' 
    config.vm.provision 'shell', path: './vagrant/provision/install-terminus-run-once.sh'
    
-	config.vm.provider :virtualbox do |v|
-		v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-		v.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
-	end
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+    vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+  end
     
 end
