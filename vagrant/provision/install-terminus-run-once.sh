@@ -20,7 +20,7 @@ rm -f composer-setup.php
 composer require pantheon-systems/terminus
 
 # adding to bin directory
-sudo ln -s /home/vagrant/vendor/pantheon-systems/terminus/bin/terminus  /usr/local/bin/terminus
+sudo ln -s ~/vendor/pantheon-systems/terminus/bin/terminus  /usr/local/bin/terminus
 
 # additional plugins
 mkdir -p ~/.terminus/plugins
